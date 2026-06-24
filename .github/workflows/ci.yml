@@ -30,9 +30,7 @@ jobs:
           cache: pnpm
 
       - name: Install dependencies
-        # No lockfile yet — bootstrapping. Run `pnpm install` locally and commit pnpm-lock.yaml,
-        # then switch back to --frozen-lockfile.
-        run: pnpm install
+        run: pnpm install --frozen-lockfile
 
       - name: Typecheck
         run: pnpm typecheck
