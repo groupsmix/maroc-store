@@ -1,0 +1,1260 @@
+<!doctype html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>MarocShop — Boutique en ligne | Livraison à domicile au Maroc</title>
+    <meta
+      name="description"
+      content="MarocShop : achetez en ligne au Maroc avec paiement à la livraison. Livraison rapide partout au Maroc. Électronique, mode, maison, sport."
+    />
+    <meta name="robots" content="index, follow" />
+    <link rel="canonical" href="https://votre-domaine.ma/" />
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="MarocShop — Boutique en ligne au Maroc" />
+    <meta
+      property="og:description"
+      content="Paiement à la livraison. Livraison rapide partout au Maroc."
+    />
+    <meta property="og:url" content="https://votre-domaine.ma/" />
+    <meta property="og:locale" content="fr_MA" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "Organization",
+        "name": "MarocShop",
+        "url": "https://votre-domaine.ma",
+        "logo": "https://votre-domaine.ma/logo.png",
+        "contactPoint": {
+          "@type": "ContactPoint",
+          "telephone": "+212600000000",
+          "contactType": "customer service",
+          "areaServed": "MA",
+          "availableLanguage": ["French", "Arabic"]
+        }
+      }
+    </script>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,300;1,400;1,700;1,800&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="/src/css/main.css" />
+    <style>
+      /* ── Design tokens ── */
+      :root {
+        --accent: #c4a472;
+        --accent-dim: rgba(196, 164, 114, 0.18);
+        --hero-bg: #0d0d0d;
+        --surface-warm: #faf9f7;
+      }
+
+      /* ── Global grain overlay ── */
+      body::after {
+        content: '';
+        position: fixed;
+        inset: 0;
+        background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='300' height='300' filter='url(%23n)' opacity='1'/%3E%3C/svg%3E");
+        opacity: 0.028;
+        pointer-events: none;
+        z-index: 9999;
+      }
+
+      /* ── Announcement bar ── */
+      .announce-bar {
+        background: var(--hero-bg);
+        color: rgba(255, 255, 255, 0.45);
+        font-size: 0.68rem;
+        font-weight: 500;
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+        text-align: center;
+        padding: 10px 20px;
+      }
+      .announce-bar strong {
+        color: rgba(255, 255, 255, 0.75);
+        font-weight: 600;
+      }
+
+      /* ── Header ── */
+      .site-header-v2 {
+        background: rgba(255, 255, 255, 0.94);
+        backdrop-filter: blur(24px) saturate(180%);
+        -webkit-backdrop-filter: blur(24px) saturate(180%);
+        border-bottom: 1px solid rgba(0, 0, 0, 0.06);
+        position: sticky;
+        top: 0;
+        z-index: 100;
+      }
+      .header-inner {
+        max-width: 1280px;
+        margin: 0 auto;
+        display: flex;
+        align-items: center;
+        gap: 0;
+        padding: 0 32px;
+        height: 58px;
+      }
+      .h-logo {
+        font-size: 1.1rem;
+        font-weight: 800;
+        letter-spacing: -0.04em;
+        color: var(--hero-bg);
+        flex-shrink: 0;
+        margin-right: 40px;
+        text-decoration: none;
+      }
+      .h-logo span {
+        font-weight: 300;
+        opacity: 0.5;
+      }
+      .h-nav {
+        display: none;
+      }
+      @media (min-width: 900px) {
+        .h-nav {
+          display: flex;
+          gap: 2px;
+          flex: 1;
+        }
+        .h-nav a {
+          font-size: 0.78rem;
+          font-weight: 500;
+          color: rgba(0, 0, 0, 0.5);
+          padding: 6px 12px;
+          border-radius: 6px;
+          transition: all 0.15s;
+          letter-spacing: -0.01em;
+          white-space: nowrap;
+        }
+        .h-nav a:hover {
+          color: var(--hero-bg);
+          background: rgba(0, 0, 0, 0.04);
+        }
+        .h-nav a.active {
+          color: var(--hero-bg);
+        }
+      }
+      .h-search {
+        flex: 1;
+        max-width: 280px;
+        margin: 0 auto;
+      }
+      .h-search input {
+        width: 100%;
+        padding: 7px 14px;
+        border: 1px solid rgba(0, 0, 0, 0.1);
+        border-radius: 100px;
+        font-size: 0.8rem;
+        color: var(--hero-bg);
+        background: rgba(0, 0, 0, 0.04);
+        outline: none;
+        transition: all 0.15s;
+      }
+      .h-search input:focus {
+        border-color: rgba(0, 0, 0, 0.2);
+        background: #fff;
+      }
+      .h-search input::placeholder {
+        color: rgba(0, 0, 0, 0.3);
+      }
+      .h-actions {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        margin-left: 24px;
+        flex-shrink: 0;
+      }
+      .h-wa {
+        background: var(--hero-bg);
+        color: #fff;
+        padding: 8px 18px;
+        border-radius: 100px;
+        font-size: 0.78rem;
+        font-weight: 600;
+        letter-spacing: -0.01em;
+        transition: background 0.15s;
+      }
+      .h-wa:hover {
+        background: #000;
+        color: #fff;
+      }
+      .h-cart {
+        width: 36px;
+        height: 36px;
+        border: 1px solid rgba(0, 0, 0, 0.1);
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 0.82rem;
+        color: var(--hero-bg);
+        position: relative;
+        transition: border-color 0.15s;
+      }
+      .h-cart:hover {
+        border-color: var(--hero-bg);
+      }
+      /* Mobile scroll nav */
+      .h-mobile-nav {
+        background: #fff;
+        border-bottom: 1px solid rgba(0, 0, 0, 0.06);
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+      }
+      .h-mobile-nav ul {
+        display: flex;
+        white-space: nowrap;
+        padding: 0 16px;
+      }
+      .h-mobile-nav ul a {
+        display: block;
+        padding: 9px 12px;
+        color: rgba(0, 0, 0, 0.45);
+        font-size: 0.8rem;
+        font-weight: 500;
+      }
+      .h-mobile-nav ul a.active {
+        color: var(--hero-bg);
+      }
+      @media (min-width: 900px) {
+        .h-mobile-nav {
+          display: none;
+        }
+      }
+
+      /* ── HERO ── */
+      .hero-editorial {
+        background: var(--hero-bg);
+        position: relative;
+        overflow: hidden;
+        padding: 80px 32px 72px;
+      }
+      @media (min-width: 900px) {
+        .hero-editorial {
+          padding: 0 0 0;
+          min-height: 88vh;
+          display: flex;
+          align-items: stretch;
+        }
+      }
+
+      .hero-editorial-inner {
+        max-width: 1280px;
+        margin: 0 auto;
+        width: 100%;
+        position: relative;
+        z-index: 1;
+      }
+      @media (min-width: 900px) {
+        .hero-editorial-inner {
+          display: grid;
+          grid-template-columns: 1fr 480px;
+          gap: 0;
+          align-items: stretch;
+          min-height: inherit;
+        }
+      }
+
+      .hero-left {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        padding: 80px 40px 80px 48px;
+      }
+      @media (max-width: 899px) {
+        .hero-left {
+          padding: 0;
+        }
+      }
+
+      .hero-label {
+        display: flex;
+        align-items: center;
+        gap: 14px;
+        margin-bottom: 48px;
+      }
+      .hero-label-num {
+        font-size: 0.6rem;
+        font-weight: 700;
+        letter-spacing: 0.14em;
+        color: rgba(255, 255, 255, 0.25);
+      }
+      .hero-label-rule {
+        width: 28px;
+        height: 1px;
+        background: rgba(255, 255, 255, 0.15);
+      }
+      .hero-label-text {
+        font-size: 0.6rem;
+        font-weight: 600;
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+        color: rgba(255, 255, 255, 0.35);
+      }
+
+      .hero-headline {
+        font-size: clamp(3.2rem, 7.5vw, 6.8rem);
+        font-weight: 800;
+        line-height: 0.93;
+        letter-spacing: -0.04em;
+        color: #fff;
+        margin-bottom: 0;
+      }
+      .hero-headline .accent {
+        color: var(--accent);
+        font-style: italic;
+        font-weight: 300;
+      }
+      .hero-headline .dim {
+        color: rgba(255, 255, 255, 0.18);
+      }
+
+      .hero-rule {
+        width: 100%;
+        height: 1px;
+        background: rgba(255, 255, 255, 0.08);
+        margin: 48px 0;
+      }
+
+      .hero-bottom {
+        display: flex;
+        flex-direction: column;
+        gap: 28px;
+      }
+      @media (min-width: 640px) {
+        .hero-bottom {
+          flex-direction: row;
+          align-items: flex-end;
+          justify-content: space-between;
+        }
+      }
+
+      .hero-desc {
+        font-size: 0.92rem;
+        font-weight: 400;
+        color: rgba(255, 255, 255, 0.4);
+        line-height: 1.75;
+        max-width: 280px;
+        letter-spacing: -0.005em;
+      }
+      .hero-desc strong {
+        color: rgba(255, 255, 255, 0.7);
+        font-weight: 500;
+      }
+
+      .hero-actions {
+        display: flex;
+        flex-direction: column;
+        gap: 12px;
+        align-items: flex-start;
+      }
+      @media (min-width: 640px) {
+        .hero-actions {
+          align-items: flex-end;
+        }
+      }
+      .hero-btn-primary {
+        background: #fff;
+        color: var(--hero-bg);
+        padding: 13px 28px;
+        border-radius: 100px;
+        font-size: 0.85rem;
+        font-weight: 700;
+        letter-spacing: -0.02em;
+        white-space: nowrap;
+        transition: all 0.2s;
+      }
+      .hero-btn-primary:hover {
+        background: var(--accent);
+        color: #fff;
+      }
+      .hero-btn-ghost {
+        font-size: 0.78rem;
+        font-weight: 500;
+        color: rgba(255, 255, 255, 0.35);
+        letter-spacing: -0.01em;
+        transition: color 0.15s;
+      }
+      .hero-btn-ghost:hover {
+        color: rgba(255, 255, 255, 0.7);
+      }
+
+      /* Hero right visual */
+      .hero-right {
+        position: relative;
+        overflow: hidden;
+        border-left: 1px solid rgba(255, 255, 255, 0.06);
+      }
+      @media (max-width: 899px) {
+        .hero-right {
+          display: none;
+        }
+      }
+
+      .hero-img-main {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        filter: grayscale(30%) brightness(0.85);
+        display: block;
+      }
+      .hero-img-overlay {
+        position: absolute;
+        inset: 0;
+        background:
+          linear-gradient(to right, var(--hero-bg) 0%, transparent 30%),
+          linear-gradient(to top, var(--hero-bg) 0%, transparent 25%);
+      }
+      .hero-product-badge {
+        position: absolute;
+        bottom: 32px;
+        right: 28px;
+        background: rgba(255, 255, 255, 0.06);
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        backdrop-filter: blur(12px);
+        border-radius: 10px;
+        padding: 16px 20px;
+        color: #fff;
+      }
+      .hpb-label {
+        font-size: 0.6rem;
+        font-weight: 600;
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+        color: rgba(255, 255, 255, 0.4);
+        margin-bottom: 4px;
+      }
+      .hpb-name {
+        font-size: 0.85rem;
+        font-weight: 600;
+        letter-spacing: -0.01em;
+        margin-bottom: 2px;
+      }
+      .hpb-price {
+        font-size: 1rem;
+        font-weight: 800;
+        color: var(--accent);
+        letter-spacing: -0.02em;
+      }
+
+      /* Hero scrolldown indicator */
+      .hero-scroll {
+        position: absolute;
+        bottom: 32px;
+        left: 48px;
+        display: none;
+      }
+      @media (min-width: 900px) {
+        .hero-scroll {
+          display: flex;
+          align-items: center;
+          gap: 10px;
+        }
+      }
+      .hero-scroll-line {
+        width: 32px;
+        height: 1px;
+        background: rgba(255, 255, 255, 0.2);
+      }
+      .hero-scroll-text {
+        font-size: 0.6rem;
+        font-weight: 600;
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+        color: rgba(255, 255, 255, 0.25);
+      }
+
+      /* ── Proof strip ── */
+      .proof-strip {
+        background: var(--surface-warm);
+        border-bottom: 1px solid rgba(0, 0, 0, 0.06);
+      }
+      .proof-inner {
+        max-width: 1280px;
+        margin: 0 auto;
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        border-left: 1px solid rgba(0, 0, 0, 0.06);
+      }
+      @media (min-width: 640px) {
+        .proof-inner {
+          grid-template-columns: repeat(4, 1fr);
+        }
+      }
+      .proof-item {
+        padding: 32px 28px;
+        border-right: 1px solid rgba(0, 0, 0, 0.06);
+        border-bottom: 1px solid rgba(0, 0, 0, 0.06);
+      }
+      @media (min-width: 640px) {
+        .proof-item {
+          border-bottom: none;
+        }
+      }
+      .proof-num {
+        font-size: 2.4rem;
+        font-weight: 800;
+        letter-spacing: -0.05em;
+        color: var(--hero-bg);
+        line-height: 1;
+        margin-bottom: 6px;
+      }
+      .proof-num span {
+        font-size: 1.2rem;
+        font-weight: 400;
+        opacity: 0.4;
+      }
+      .proof-label {
+        font-size: 0.72rem;
+        font-weight: 600;
+        color: rgba(0, 0, 0, 0.4);
+        letter-spacing: 0.04em;
+        text-transform: uppercase;
+      }
+
+      /* ── Section header editorial ── */
+      .section-head-ed {
+        display: flex;
+        align-items: baseline;
+        gap: 20px;
+        margin-bottom: 40px;
+      }
+      .section-head-num {
+        font-size: 0.65rem;
+        font-weight: 700;
+        letter-spacing: 0.12em;
+        color: rgba(0, 0, 0, 0.25);
+        flex-shrink: 0;
+      }
+      .section-head-title {
+        font-size: 1.6rem;
+        font-weight: 700;
+        letter-spacing: -0.035em;
+        color: var(--hero-bg);
+      }
+      .section-head-rule {
+        flex: 1;
+        height: 1px;
+        background: rgba(0, 0, 0, 0.08);
+        align-self: center;
+      }
+      .section-head-link {
+        font-size: 0.75rem;
+        font-weight: 600;
+        color: rgba(0, 0, 0, 0.35);
+        letter-spacing: -0.01em;
+        flex-shrink: 0;
+        transition: color 0.15s;
+      }
+      .section-head-link:hover {
+        color: var(--hero-bg);
+      }
+
+      /* ── Featured section ── */
+      .featured-section {
+        padding: 72px 32px;
+        max-width: 1280px;
+        margin: 0 auto;
+      }
+
+      /* ── Categories editorial ── */
+      .cat-section {
+        background: var(--hero-bg);
+        padding: 72px 32px;
+      }
+      .cat-inner {
+        max-width: 1280px;
+        margin: 0 auto;
+      }
+      .cat-head {
+        display: flex;
+        align-items: baseline;
+        gap: 20px;
+        margin-bottom: 48px;
+        padding-bottom: 24px;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+      }
+      .cat-head-num {
+        font-size: 0.62rem;
+        font-weight: 700;
+        letter-spacing: 0.12em;
+        color: rgba(255, 255, 255, 0.2);
+      }
+      .cat-head-title {
+        font-size: 1.1rem;
+        font-weight: 600;
+        letter-spacing: -0.02em;
+        color: rgba(255, 255, 255, 0.6);
+      }
+      .cat-list {
+        display: flex;
+        flex-direction: column;
+        gap: 0;
+      }
+      .cat-item {
+        display: flex;
+        align-items: center;
+        padding: 24px 0;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+        text-decoration: none;
+        group: true;
+        transition: all 0.2s;
+      }
+      .cat-item:hover .cat-item-num {
+        color: var(--accent);
+      }
+      .cat-item:hover .cat-item-name {
+        color: #fff;
+      }
+      .cat-item:hover .cat-item-arrow {
+        opacity: 1;
+        transform: translateX(0);
+      }
+      .cat-item-num {
+        font-size: 0.62rem;
+        font-weight: 700;
+        letter-spacing: 0.1em;
+        color: rgba(255, 255, 255, 0.2);
+        width: 48px;
+        flex-shrink: 0;
+        transition: color 0.2s;
+      }
+      .cat-item-name {
+        font-size: clamp(2rem, 5vw, 3.5rem);
+        font-weight: 800;
+        letter-spacing: -0.04em;
+        color: rgba(255, 255, 255, 0.35);
+        flex: 1;
+        line-height: 1;
+        transition: color 0.2s;
+      }
+      .cat-item-sub {
+        font-size: 0.75rem;
+        font-weight: 500;
+        color: rgba(255, 255, 255, 0.2);
+        letter-spacing: 0.02em;
+        margin-right: 24px;
+        flex-shrink: 0;
+      }
+      .cat-item-arrow {
+        font-size: 0.9rem;
+        color: var(--accent);
+        opacity: 0;
+        transform: translateX(-8px);
+        transition: all 0.2s;
+      }
+
+      /* ── All products section ── */
+      .all-section {
+        padding: 72px 32px;
+        max-width: 1280px;
+        margin: 0 auto;
+      }
+
+      /* ── CTA block ── */
+      .cta-block {
+        background: var(--hero-bg);
+        position: relative;
+        overflow: hidden;
+      }
+      .cta-block-inner {
+        max-width: 1280px;
+        margin: 0 auto;
+        padding: 96px 48px;
+        display: flex;
+        flex-direction: column;
+        gap: 40px;
+      }
+      @media (min-width: 768px) {
+        .cta-block-inner {
+          flex-direction: row;
+          align-items: center;
+          justify-content: space-between;
+        }
+      }
+      .cta-block-text {
+      }
+      .cta-block-label {
+        font-size: 0.62rem;
+        font-weight: 700;
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+        color: var(--accent);
+        margin-bottom: 16px;
+        display: block;
+      }
+      .cta-block-title {
+        font-size: clamp(2rem, 5vw, 3.8rem);
+        font-weight: 800;
+        letter-spacing: -0.04em;
+        line-height: 0.95;
+        color: #fff;
+      }
+      .cta-block-title .dim {
+        color: rgba(255, 255, 255, 0.2);
+      }
+      .cta-block-actions {
+        display: flex;
+        flex-direction: column;
+        gap: 12px;
+        flex-shrink: 0;
+      }
+      .cta-btn-main {
+        background: #fff;
+        color: var(--hero-bg);
+        padding: 16px 36px;
+        border-radius: 100px;
+        font-size: 0.9rem;
+        font-weight: 700;
+        letter-spacing: -0.02em;
+        white-space: nowrap;
+        transition: all 0.2s;
+        text-align: center;
+      }
+      .cta-btn-main:hover {
+        background: var(--accent);
+        color: #fff;
+      }
+      .cta-btn-wa {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 8px;
+        background: rgba(255, 255, 255, 0.06);
+        color: rgba(255, 255, 255, 0.6);
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        padding: 14px 28px;
+        border-radius: 100px;
+        font-size: 0.82rem;
+        font-weight: 600;
+        letter-spacing: -0.01em;
+        transition: all 0.2s;
+      }
+      .cta-btn-wa:hover {
+        border-color: rgba(255, 255, 255, 0.3);
+        color: #fff;
+      }
+      .cta-btn-wa svg {
+        width: 14px;
+        height: 14px;
+      }
+
+      /* ── Blog section ── */
+      .blog-section {
+        padding: 72px 32px;
+        max-width: 1280px;
+        margin: 0 auto;
+      }
+
+      /* ── Footer ── */
+      .footer-v2 {
+        background: var(--surface-warm);
+        border-top: 1px solid rgba(0, 0, 0, 0.07);
+        padding: 56px 32px 32px;
+      }
+      .footer-v2-inner {
+        max-width: 1280px;
+        margin: 0 auto;
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: 40px;
+      }
+      @media (min-width: 768px) {
+        .footer-v2-inner {
+          grid-template-columns: 2fr 1fr 1fr 1fr;
+          gap: 40px;
+        }
+      }
+      .footer-v2-brand .f-logo {
+        font-size: 1.1rem;
+        font-weight: 800;
+        letter-spacing: -0.04em;
+        color: var(--hero-bg);
+        display: block;
+        margin-bottom: 14px;
+      }
+      .footer-v2-brand .f-logo span {
+        font-weight: 300;
+        opacity: 0.4;
+      }
+      .footer-v2-brand p {
+        font-size: 0.8rem;
+        color: rgba(0, 0, 0, 0.4);
+        line-height: 1.7;
+        max-width: 240px;
+      }
+      .footer-v2-brand .f-badges {
+        display: flex;
+        gap: 8px;
+        flex-wrap: wrap;
+        margin-top: 20px;
+      }
+      .footer-v2-brand .f-badge {
+        font-size: 0.64rem;
+        font-weight: 600;
+        letter-spacing: 0.06em;
+        text-transform: uppercase;
+        border: 1px solid rgba(0, 0, 0, 0.12);
+        border-radius: 4px;
+        padding: 4px 8px;
+        color: rgba(0, 0, 0, 0.4);
+      }
+      .footer-v2-col h5 {
+        font-size: 0.64rem;
+        font-weight: 700;
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+        color: rgba(0, 0, 0, 0.3);
+        margin-bottom: 16px;
+      }
+      .footer-v2-col ul li {
+        margin-bottom: 10px;
+      }
+      .footer-v2-col ul li a {
+        font-size: 0.82rem;
+        color: rgba(0, 0, 0, 0.55);
+        transition: color 0.15s;
+        letter-spacing: -0.01em;
+      }
+      .footer-v2-col ul li a:hover {
+        color: var(--hero-bg);
+      }
+      .footer-v2-bottom {
+        max-width: 1280px;
+        margin: 40px auto 0;
+        padding-top: 24px;
+        border-top: 1px solid rgba(0, 0, 0, 0.07);
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        flex-wrap: wrap;
+        gap: 8px;
+      }
+      .footer-v2-bottom p {
+        font-size: 0.72rem;
+        color: rgba(0, 0, 0, 0.3);
+        letter-spacing: -0.01em;
+      }
+
+      /* ── WhatsApp float ── */
+      .wa-float-v2 {
+        position: fixed;
+        bottom: 24px;
+        right: 24px;
+        z-index: 200;
+      }
+      .wa-float-v2 a {
+        width: 52px;
+        height: 52px;
+        background: #25d366;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        box-shadow: 0 4px 20px rgba(37, 211, 102, 0.35);
+        transition: all 0.2s;
+        color: #fff;
+      }
+      .wa-float-v2 a:hover {
+        background: #1ebe5d;
+        transform: scale(1.07);
+      }
+      .wa-float-v2 svg {
+        width: 24px;
+        height: 24px;
+        fill: #fff;
+      }
+
+      /* ── Product grid overrides ── */
+      .product-grid {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 16px;
+      }
+      @media (min-width: 640px) {
+        .product-grid {
+          gap: 20px;
+        }
+      }
+      @media (min-width: 768px) {
+        .product-grid {
+          grid-template-columns: repeat(3, 1fr);
+          gap: 24px;
+        }
+      }
+      @media (min-width: 1024px) {
+        .product-grid {
+          grid-template-columns: repeat(4, 1fr);
+        }
+      }
+
+      @media (max-width: 899px) {
+        .hero-editorial {
+          padding: 56px 24px 64px;
+        }
+        .featured-section,
+        .all-section,
+        .blog-section {
+          padding: 56px 20px;
+        }
+        .cat-section {
+          padding: 56px 20px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <!-- ── Announcement ── -->
+    <div class="announce-bar">
+      <strong>Livraison partout au Maroc</strong> &nbsp;·&nbsp; Paiement à la livraison
+      &nbsp;·&nbsp; Retours sous 7 jours
+    </div>
+
+    <!-- ── Header ── -->
+    <header class="site-header-v2">
+      <div class="header-inner">
+        <a href="/" class="h-logo">Maroc<span>Shop</span></a>
+        <nav class="h-nav" aria-label="Navigation">
+          <a href="/" class="active">Accueil</a>
+          <a href="/produits.html">Boutique</a>
+          <a href="/categorie/electronique.html">Électronique</a>
+          <a href="/categorie/mode.html">Mode</a>
+          <a href="/categorie/maison.html">Maison</a>
+          <a href="/categorie/sport.html">Sport</a>
+          <a href="/blog.html">Blog</a>
+        </nav>
+        <div class="h-search">
+          <label for="search-input" class="sr-only">Rechercher</label>
+          <input
+            type="search"
+            id="search-input"
+            placeholder="Rechercher un produit…"
+            autocomplete="off"
+          />
+        </div>
+        <div class="h-actions">
+          <a href="https://wa.me/212600000000" class="h-wa" target="_blank" rel="noopener"
+            >WhatsApp</a
+          >
+          <a href="/panier.html" class="h-cart" aria-label="Panier">🛒</a>
+        </div>
+      </div>
+      <div class="h-mobile-nav">
+        <ul>
+          <li><a href="/" class="active">Accueil</a></li>
+          <li><a href="/produits.html">Boutique</a></li>
+          <li><a href="/categorie/electronique.html">Électronique</a></li>
+          <li><a href="/categorie/mode.html">Mode</a></li>
+          <li><a href="/categorie/maison.html">Maison</a></li>
+          <li><a href="/categorie/sport.html">Sport</a></li>
+          <li><a href="/blog.html">Blog</a></li>
+          <li><a href="/a-propos.html">À Propos</a></li>
+        </ul>
+      </div>
+    </header>
+
+    <main>
+      <!-- ── HERO ── -->
+      <section class="hero-editorial" aria-labelledby="hero-title">
+        <div class="hero-editorial-inner">
+          <!-- Left -->
+          <div class="hero-left">
+            <div class="hero-label">
+              <span class="hero-label-num">01</span>
+              <span class="hero-label-rule"></span>
+              <span class="hero-label-text">Boutique en ligne · Maroc</span>
+            </div>
+
+            <h1 class="hero-headline" id="hero-title">
+              Achetez<br />
+              en ligne.<br />
+              <span class="accent">Payez</span><br />
+              <span class="dim">à la porte.</span>
+            </h1>
+
+            <div class="hero-rule"></div>
+
+            <div class="hero-bottom">
+              <p class="hero-desc">
+                Commandez en ligne, <strong>payez cash à la réception</strong>. Livraison en 2 à 5
+                jours partout au Maroc.
+              </p>
+              <div class="hero-actions">
+                <a href="/produits.html" class="hero-btn-primary">Voir les produits</a>
+                <a
+                  href="https://wa.me/212600000000"
+                  class="hero-btn-ghost"
+                  target="_blank"
+                  rel="noopener"
+                >
+                  Commander via WhatsApp →
+                </a>
+              </div>
+            </div>
+          </div>
+
+          <!-- Right visual -->
+          <div class="hero-right" aria-hidden="true">
+            <img
+              class="hero-img-main"
+              src="https://images.unsplash.com/photo-1523275335684-37898b6baf30?w=900&q=85"
+              alt="Montre connectée MarocShop"
+              loading="eager"
+            />
+            <div class="hero-img-overlay"></div>
+            <div class="hero-product-badge">
+              <div class="hpb-label">Produit phare</div>
+              <div class="hpb-name">Smart Watch Pro</div>
+              <div class="hpb-price">249 MAD</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="hero-scroll">
+          <span class="hero-scroll-line"></span>
+          <span class="hero-scroll-text">Défiler</span>
+        </div>
+      </section>
+
+      <!-- ── Proof ── -->
+      <div class="proof-strip" role="complementary" aria-label="Chiffres clés">
+        <div class="proof-inner">
+          <div class="proof-item">
+            <div class="proof-num">COD<span> only</span></div>
+            <div class="proof-label">Paiement à la livraison</div>
+          </div>
+          <div class="proof-item">
+            <div class="proof-num">2–5<span> jours</span></div>
+            <div class="proof-label">Livraison rapide</div>
+          </div>
+          <div class="proof-item">
+            <div class="proof-num">7<span> jours</span></div>
+            <div class="proof-label">Retours gratuits</div>
+          </div>
+          <div class="proof-item">
+            <div class="proof-num">100<span>%</span></div>
+            <div class="proof-label">Couverture nationale</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ── Featured products ── -->
+      <section class="featured-section" aria-labelledby="featured-title">
+        <div class="section-head-ed">
+          <span class="section-head-num">02</span>
+          <h2 class="section-head-title" id="featured-title">Produits phares</h2>
+          <span class="section-head-rule"></span>
+          <a href="/produits.html" class="section-head-link">Tout voir →</a>
+        </div>
+        <div class="product-grid" id="featured-products"></div>
+      </section>
+
+      <!-- ── Categories editorial ── -->
+      <section class="cat-section" aria-labelledby="cat-title">
+        <div class="cat-inner">
+          <div class="cat-head">
+            <span class="cat-head-num">03</span>
+            <h2 class="cat-head-title" id="cat-title">Nos catégories</h2>
+          </div>
+          <div class="cat-list">
+            <a href="/categorie/electronique.html" class="cat-item">
+              <span class="cat-item-num">01</span>
+              <span class="cat-item-name">Électronique</span>
+              <span class="cat-item-sub">Gadgets &amp; tech</span>
+              <span class="cat-item-arrow">→</span>
+            </a>
+            <a href="/categorie/mode.html" class="cat-item">
+              <span class="cat-item-num">02</span>
+              <span class="cat-item-name">Mode</span>
+              <span class="cat-item-sub">Sacs &amp; accessoires</span>
+              <span class="cat-item-arrow">→</span>
+            </a>
+            <a href="/categorie/maison.html" class="cat-item">
+              <span class="cat-item-num">03</span>
+              <span class="cat-item-name">Maison</span>
+              <span class="cat-item-sub">Décoration &amp; LED</span>
+              <span class="cat-item-arrow">→</span>
+            </a>
+            <a href="/categorie/sport.html" class="cat-item">
+              <span class="cat-item-num">04</span>
+              <span class="cat-item-name">Sport</span>
+              <span class="cat-item-sub">Fitness &amp; plein air</span>
+              <span class="cat-item-arrow">→</span>
+            </a>
+          </div>
+        </div>
+      </section>
+
+      <!-- ── All products ── -->
+      <section class="all-section" aria-labelledby="all-title">
+        <div class="section-head-ed">
+          <span class="section-head-num">04</span>
+          <h2 class="section-head-title" id="all-title">Toute la boutique</h2>
+          <span class="section-head-rule"></span>
+        </div>
+        <div class="product-grid" id="all-products"></div>
+      </section>
+
+      <!-- ── CTA block ── -->
+      <section class="cta-block" aria-label="Commander maintenant">
+        <div class="cta-block-inner">
+          <div class="cta-block-text">
+            <span class="cta-block-label">Prêt à commander ?</span>
+            <h2 class="cta-block-title">
+              Zéro avance.<br />
+              <span class="dim">Livraison à votre porte.</span>
+            </h2>
+          </div>
+          <div class="cta-block-actions">
+            <a href="/produits.html" class="cta-btn-main">Découvrir les produits</a>
+            <a href="https://wa.me/212600000000" class="cta-btn-wa" target="_blank" rel="noopener">
+              <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                <path
+                  d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"
+                />
+              </svg>
+              Commander sur WhatsApp
+            </a>
+          </div>
+        </div>
+      </section>
+
+      <!-- ── Blog ── -->
+      <section class="blog-section" aria-labelledby="blog-title">
+        <div class="section-head-ed">
+          <span class="section-head-num">05</span>
+          <h2 class="section-head-title" id="blog-title">Guides &amp; Conseils</h2>
+          <span class="section-head-rule"></span>
+          <a href="/blog.html" class="section-head-link">Voir le blog →</a>
+        </div>
+        <div class="blog-grid">
+          <article class="blog-card">
+            <a href="/blog/meilleure-smartwatch-maroc.html" class="blog-card-image">
+              <img
+                src="https://images.unsplash.com/photo-1523275335684-37898b6baf30?w=600&q=80"
+                alt="Guide choisir smartwatch Maroc"
+                loading="lazy"
+                width="600"
+                height="340"
+              />
+            </a>
+            <div class="blog-card-body">
+              <div class="blog-card-cat">Guides d'achat</div>
+              <h3 class="blog-card-title">
+                <a href="/blog/meilleure-smartwatch-maroc.html"
+                  >Comment choisir la meilleure smartwatch au Maroc en 2025</a
+                >
+              </h3>
+              <p class="blog-card-excerpt">
+                Guide complet pour trouver la montre connectée idéale selon votre budget. Comparatif
+                avec livraison COD.
+              </p>
+              <div class="blog-card-meta">
+                <span>15 jan. 2025</span><span>5 min de lecture</span>
+              </div>
+            </div>
+          </article>
+        </div>
+      </section>
+    </main>
+
+    <!-- ── WhatsApp float ── -->
+    <div class="wa-float-v2">
+      <a
+        href="https://wa.me/212600000000"
+        target="_blank"
+        rel="noopener"
+        aria-label="Contacter sur WhatsApp"
+      >
+        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+          <path
+            d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"
+          />
+        </svg>
+      </a>
+    </div>
+
+    <!-- ── Footer ── -->
+    <footer class="footer-v2">
+      <div class="footer-v2-inner">
+        <div class="footer-v2-brand">
+          <a href="/" class="f-logo">Maroc<span>Shop</span></a>
+          <p>
+            Votre boutique en ligne de confiance au Maroc. Paiement à la livraison, livraison
+            rapide, retours faciles.
+          </p>
+          <div class="f-badges">
+            <span class="f-badge">COD</span>
+            <span class="f-badge">Livraison rapide</span>
+            <span class="f-badge">Retours 7j</span>
+          </div>
+        </div>
+        <div class="footer-v2-col">
+          <h5>Boutique</h5>
+          <ul>
+            <li><a href="/produits.html">Tous les produits</a></li>
+            <li><a href="/categorie/electronique.html">Électronique</a></li>
+            <li><a href="/categorie/mode.html">Mode</a></li>
+            <li><a href="/categorie/maison.html">Maison</a></li>
+            <li><a href="/categorie/sport.html">Sport</a></li>
+          </ul>
+        </div>
+        <div class="footer-v2-col">
+          <h5>Informations</h5>
+          <ul>
+            <li><a href="/a-propos.html">À Propos</a></li>
+            <li><a href="/blog.html">Blog &amp; Guides</a></li>
+            <li><a href="/faq.html">FAQ</a></li>
+            <li><a href="/contact.html">Contact</a></li>
+            <li><a href="/suivi-commande.html">Suivi commande</a></li>
+          </ul>
+        </div>
+        <div class="footer-v2-col">
+          <h5>Légal</h5>
+          <ul>
+            <li><a href="/retours.html">Retours &amp; Remboursements</a></li>
+            <li><a href="/conditions.html">Conditions Générales</a></li>
+          </ul>
+          <h5 style="margin-top: 24px">Contact</h5>
+          <ul>
+            <li>
+              <a href="https://wa.me/212600000000" target="_blank" rel="noopener">WhatsApp</a>
+            </li>
+            <li><a href="mailto:contact@votre-domaine.ma">Email</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-v2-bottom">
+        <p>© 2025 MarocShop. Tous droits réservés.</p>
+        <p>Livraison partout au Maroc</p>
+      </div>
+    </footer>
+
+    <script type="module">
+      import { PRODUCTS, productCardHtml } from '/src/js/main.js';
+      import { seedDemoReviews } from '/src/js/reviews.js';
+      import { mountRecentBar } from '/src/js/recently-viewed.js';
+      seedDemoReviews();
+      const featured = PRODUCTS.filter((p) => p.badge).slice(0, 4);
+      document.getElementById('featured-products').innerHTML = featured
+        .map((p) => productCardHtml(p))
+        .join('');
+      document.getElementById('all-products').innerHTML = PRODUCTS.map((p) =>
+        productCardHtml(p),
+      ).join('');
+      mountRecentBar(PRODUCTS);
+
+      // Search
+      const si = document.getElementById('search-input');
+      if (si) {
+        si.addEventListener('keydown', (e) => {
+          if (e.key === 'Enter' && si.value.trim()) {
+            window.location.href = `/produits.html?q=${encodeURIComponent(si.value.trim())}`;
+          }
+        });
+      }
+    </script>
+  </body>
+</html>

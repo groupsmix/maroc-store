@@ -1,0 +1,455 @@
+<!doctype html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Mon Panier — MarocShop</title>
+    <meta name="robots" content="noindex" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="/src/css/main.css" />
+  </head>
+  <body>
+    <div class="trust-bar">
+      <div class="trust-bar-items">
+        <span>Livraison rapide partout au Maroc</span><span>Paiement à la livraison</span
+        ><span>Retours sous 7 jours</span>
+      </div>
+    </div>
+
+    <header class="site-header">
+      <div class="header-top container">
+        <a href="/" class="logo">Maroc<span>Shop</span></a>
+        <div class="header-search">
+          <label for="search-input" class="sr-only">Rechercher</label
+          ><input type="search" id="search-input" placeholder="Rechercher un produit..." />
+        </div>
+        <div class="header-actions">
+          <a href="https://wa.me/212600000000" class="whatsapp-link" target="_blank" rel="noopener"
+            >WhatsApp</a
+          >
+        </div>
+      </div>
+      <nav class="mobile-nav">
+        <ul>
+          <li><a href="/">Accueil</a></li>
+          <li><a href="/produits.html">Boutique</a></li>
+          <li><a href="/categorie/electronique.html">Électronique</a></li>
+          <li><a href="/blog.html">Blog</a></li>
+          <li><a href="/contact.html">Contact</a></li>
+        </ul>
+      </nav>
+      <nav class="desktop-nav">
+        <div class="container">
+          <ul>
+            <li><a href="/">Accueil</a></li>
+            <li><a href="/produits.html">Boutique</a></li>
+            <li><a href="/categorie/electronique.html">Électronique</a></li>
+            <li><a href="/categorie/mode.html">Mode</a></li>
+            <li><a href="/categorie/maison.html">Maison</a></li>
+            <li><a href="/categorie/sport.html">Sport</a></li>
+            <li><a href="/blog.html">Blog</a></li>
+            <li><a href="/a-propos.html">À Propos</a></li>
+            <li><a href="/contact.html">Contact</a></li>
+          </ul>
+        </div>
+      </nav>
+    </header>
+
+    <main>
+      <div class="container" style="padding-top: 40px; padding-bottom: 64px; max-width: 900px">
+        <h1 style="font-size: 1.5rem; font-weight: 800; margin-bottom: 32px">
+          Mon Panier
+          <span
+            id="cart-count-title"
+            style="font-size: 1rem; font-weight: 400; color: var(--ink-muted)"
+          ></span>
+        </h1>
+
+        <div id="cart-empty" style="display: none; text-align: center; padding: 64px 24px">
+          <div style="font-size: 3rem; margin-bottom: 16px">🛒</div>
+          <h2 style="font-size: 1.1rem; font-weight: 700; margin-bottom: 8px">
+            Votre panier est vide
+          </h2>
+          <p style="color: var(--ink-muted); margin-bottom: 24px">
+            Ajoutez des produits pour passer commande.
+          </p>
+          <a href="/produits.html" class="btn btn-primary">Découvrir nos produits</a>
+        </div>
+
+        <div id="cart-content" style="display: none">
+          <div class="cart-layout">
+            <!-- Items -->
+            <div>
+              <div id="cart-items"></div>
+            </div>
+
+            <!-- Checkout panel -->
+            <div>
+              <div class="cart-summary-box">
+                <div class="cart-summary-title">Récapitulatif</div>
+                <div id="cart-summary-lines"></div>
+
+                <!-- Promo code -->
+                <div class="promo-row" id="promo-row">
+                  <div class="promo-input-wrap">
+                    <input
+                      type="text"
+                      id="promo-input"
+                      class="promo-input"
+                      placeholder="Code promo"
+                      autocomplete="off"
+                      style="text-transform: uppercase"
+                    />
+                    <button type="button" id="promo-apply-btn" class="promo-apply-btn">
+                      Appliquer
+                    </button>
+                  </div>
+                  <div id="promo-feedback" class="promo-feedback"></div>
+                </div>
+
+                <div class="cart-total-row" id="subtotal-row" style="display: none">
+                  <span style="color: var(--ink-muted)">Sous-total</span>
+                  <span id="cart-subtotal-price"></span>
+                </div>
+                <div
+                  class="cart-total-row"
+                  id="discount-row"
+                  style="display: none; color: var(--green)"
+                >
+                  <span id="discount-label">Réduction</span>
+                  <span id="discount-amount" style="color: var(--green); font-weight: 700"></span>
+                </div>
+                <div class="cart-total-row" style="font-size: 1.05rem">
+                  <span style="font-weight: 700">Total</span>
+                  <span id="cart-total-price" style="font-size: 1.2rem; font-weight: 800"></span>
+                </div>
+                <div class="cart-cod-note">Paiement uniquement à la livraison 🇲🇦</div>
+
+                <div class="cart-form-title">Vos coordonnées</div>
+                <form id="cart-order-form" novalidate>
+                  <div class="form-group">
+                    <label class="form-label" for="c-name">Nom complet <span>*</span></label>
+                    <input
+                      type="text"
+                      id="c-name"
+                      class="form-control"
+                      placeholder="Votre nom"
+                      required
+                      autocomplete="name"
+                    />
+                  </div>
+                  <div class="form-group">
+                    <label class="form-label" for="c-phone">Téléphone <span>*</span></label>
+                    <input
+                      type="tel"
+                      id="c-phone"
+                      class="form-control"
+                      placeholder="06 XX XX XX XX"
+                      required
+                      autocomplete="tel"
+                    />
+                  </div>
+                  <div class="form-group">
+                    <label class="form-label" for="c-city">Ville <span>*</span></label>
+                    <select id="c-city" class="form-control" required>
+                      <option value="">Sélectionnez votre ville...</option>
+                    </select>
+                  </div>
+                  <div class="form-group">
+                    <label class="form-label" for="c-address">Adresse <span>*</span></label>
+                    <textarea
+                      id="c-address"
+                      class="form-control"
+                      rows="2"
+                      placeholder="Quartier, rue, n° de maison..."
+                      required
+                    ></textarea>
+                  </div>
+                  <button
+                    type="submit"
+                    class="btn btn-primary btn-full btn-lg"
+                    id="cart-submit-btn"
+                  >
+                    Confirmer ma commande (COD)
+                  </button>
+                  <div class="form-trust" style="margin-top: 10px">
+                    Vous serez appelé(e) pour confirmer avant la livraison
+                  </div>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+
+    <div class="wa-float">
+      <a href="https://wa.me/212600000000" target="_blank" rel="noopener" aria-label="WhatsApp"
+        ><svg viewBox="0 0 24 24">
+          <path
+            d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"
+          /></svg
+      ></a>
+    </div>
+
+    <footer class="site-footer">
+      <div class="container">
+        <div class="footer-grid">
+          <div class="footer-brand">
+            <a href="/" class="logo">Maroc<span>Shop</span></a>
+            <p>Boutique en ligne de confiance au Maroc.</p>
+          </div>
+          <div class="footer-col">
+            <h4>Boutique</h4>
+            <ul>
+              <li><a href="/produits.html">Tous les produits</a></li>
+              <li><a href="/categorie/electronique.html">Électronique</a></li>
+            </ul>
+          </div>
+          <div class="footer-col">
+            <h4>Pages</h4>
+            <ul>
+              <li><a href="/faq.html">FAQ</a></li>
+              <li><a href="/contact.html">Contact</a></li>
+            </ul>
+          </div>
+          <div class="footer-col">
+            <h4>Légal</h4>
+            <ul>
+              <li><a href="/retours.html">Retours</a></li>
+              <li><a href="/conditions.html">Conditions</a></li>
+            </ul>
+          </div>
+        </div>
+        <div class="footer-bottom"><p>© 2025 MarocShop. Tous droits réservés.</p></div>
+      </div>
+    </footer>
+
+    <script type="module">
+      import { getCart, removeFromCart, updateQty, clearCart } from '/src/js/cart.js';
+      import {
+        citiesOptions,
+        formatPrice,
+        WHATSAPP_NUMBER,
+        STORE_NAME,
+        PROMO_CODES,
+      } from '/src/js/main.js';
+      import '/src/js/cart-widget.js';
+
+      const CITIES_SELECT = document.getElementById('c-city');
+      CITIES_SELECT.innerHTML += citiesOptions();
+
+      /* ─── Promo state ─────────────────────────────────────────── */
+      let activePromo = null; // { code, pct }
+
+      function applyPromo(raw) {
+        const code = raw.trim().toUpperCase();
+        const pct = PROMO_CODES[code];
+        if (!pct) return null;
+        return { code, pct };
+      }
+
+      function updateTotals(cart) {
+        const subtotal = cart.reduce((s, i) => s + i.price * i.qty, 0);
+        const discount = activePromo ? Math.round((subtotal * activePromo.pct) / 100) : 0;
+        const total = subtotal - discount;
+
+        document.getElementById('cart-summary-lines').innerHTML = cart
+          .map(
+            (i) =>
+              `<div class="cart-summary-line"><span>${i.name} x${i.qty}</span><span>${formatPrice(i.price * i.qty)}</span></div>`,
+          )
+          .join('');
+
+        if (activePromo) {
+          document.getElementById('subtotal-row').style.display = 'flex';
+          document.getElementById('cart-subtotal-price').textContent = formatPrice(subtotal);
+          document.getElementById('discount-row').style.display = 'flex';
+          document.getElementById('discount-label').textContent =
+            `Code ${activePromo.code} (−${activePromo.pct}%)`;
+          document.getElementById('discount-amount').textContent = `−${formatPrice(discount)}`;
+        } else {
+          document.getElementById('subtotal-row').style.display = 'none';
+          document.getElementById('discount-row').style.display = 'none';
+        }
+        document.getElementById('cart-total-price').textContent = formatPrice(total);
+        return { subtotal, discount, total };
+      }
+
+      function render() {
+        const cart = getCart();
+        const empty = document.getElementById('cart-empty');
+        const content = document.getElementById('cart-content');
+        const countTitle = document.getElementById('cart-count-title');
+
+        if (!cart.length) {
+          empty.style.display = 'block';
+          content.style.display = 'none';
+          return;
+        }
+        empty.style.display = 'none';
+        content.style.display = 'block';
+
+        const itemCount = cart.reduce((s, i) => s + i.qty, 0);
+        countTitle.textContent = `(${itemCount} article${itemCount > 1 ? 's' : ''})`;
+
+        document.getElementById('cart-items').innerHTML = cart
+          .map(
+            (item) => `
+    <div class="cart-item" data-id="${item.id}">
+      <img src="${item.image}" alt="${item.name}" class="cart-item-img" width="80" height="80">
+      <div class="cart-item-info">
+        <div class="cart-item-name">${item.name}</div>
+        <div class="cart-item-price">${formatPrice(item.price)}</div>
+      </div>
+      <div class="cart-item-controls">
+        <div class="qty-control" style="width:auto">
+          <button type="button" class="qty-dec" data-id="${item.id}" aria-label="Diminuer">−</button>
+          <input type="number" value="${item.qty}" min="1" max="20" class="qty-val" data-id="${item.id}" readonly style="width:40px">
+          <button type="button" class="qty-inc" data-id="${item.id}" aria-label="Augmenter">+</button>
+        </div>
+        <div class="cart-item-subtotal">${formatPrice(item.price * item.qty)}</div>
+        <button class="cart-item-remove" data-id="${item.id}" aria-label="Supprimer">✕</button>
+      </div>
+    </div>`,
+          )
+          .join('');
+
+        updateTotals(cart);
+
+        document.querySelectorAll('.qty-dec').forEach((btn) =>
+          btn.addEventListener('click', () => {
+            const item = getCart().find((i) => i.id === btn.dataset.id);
+            if (item) updateQty(item.id, item.qty - 1);
+            render();
+          }),
+        );
+        document.querySelectorAll('.qty-inc').forEach((btn) =>
+          btn.addEventListener('click', () => {
+            const item = getCart().find((i) => i.id === btn.dataset.id);
+            if (item) updateQty(item.id, item.qty + 1);
+            render();
+          }),
+        );
+        document.querySelectorAll('.cart-item-remove').forEach((btn) => {
+          btn.addEventListener('click', () => {
+            removeFromCart(btn.dataset.id);
+            render();
+          });
+        });
+      }
+
+      render();
+      window.addEventListener('cart-updated', render);
+
+      /* ─── Promo code UI ───────────────────────────────────────── */
+      const promoInput = document.getElementById('promo-input');
+      const promoApplyBtn = document.getElementById('promo-apply-btn');
+      const promoFeedback = document.getElementById('promo-feedback');
+
+      function setPromoFeedback(msg, ok) {
+        promoFeedback.textContent = msg;
+        promoFeedback.className = `promo-feedback ${ok ? 'ok' : 'err'}`;
+      }
+
+      promoApplyBtn.addEventListener('click', () => {
+        if (activePromo) {
+          activePromo = null;
+          promoInput.value = '';
+          promoInput.disabled = false;
+          promoApplyBtn.textContent = 'Appliquer';
+          promoApplyBtn.classList.remove('applied');
+          setPromoFeedback('', true);
+          updateTotals(getCart());
+          return;
+        }
+        const result = applyPromo(promoInput.value);
+        if (!result) {
+          setPromoFeedback('Code invalide ou expiré.', false);
+          return;
+        }
+        activePromo = result;
+        promoInput.disabled = true;
+        promoApplyBtn.textContent = 'Supprimer';
+        promoApplyBtn.classList.add('applied');
+        setPromoFeedback(`✓ Code ${result.code} appliqué — ${result.pct}% de réduction !`, true);
+        updateTotals(getCart());
+      });
+
+      promoInput.addEventListener('keydown', (e) => {
+        if (e.key === 'Enter') promoApplyBtn.click();
+      });
+
+      /* ─── Checkout submit ─────────────────────────────────────── */
+      document.getElementById('cart-order-form').addEventListener('submit', async (e) => {
+        e.preventDefault();
+        const cart = getCart();
+        if (!cart.length) return;
+
+        const name = document.getElementById('c-name').value.trim();
+        const phone = document.getElementById('c-phone').value.trim();
+        const city = document.getElementById('c-city').value;
+        const address = document.getElementById('c-address').value.trim();
+        if (!name || !phone || !city || !address) {
+          alert('Veuillez remplir tous les champs.');
+          return;
+        }
+
+        const btn = document.getElementById('cart-submit-btn');
+        btn.disabled = true;
+        btn.textContent = 'Envoi...';
+
+        // Save each item as a separate order line
+        for (const item of cart) {
+          try {
+            await fetch('/api/orders', {
+              method: 'POST',
+              headers: { 'Content-Type': 'application/json' },
+              body: JSON.stringify({
+                name,
+                phone,
+                city,
+                address,
+                productId: item.id,
+                productName: item.name,
+                quantity: item.qty,
+              }),
+            });
+          } catch (_) {}
+        }
+
+        // Build WhatsApp message with all items + promo
+        const lines = cart
+          .map((i) => `🛍️ ${i.name} x${i.qty} — ${formatPrice(i.price * i.qty)}`)
+          .join('\n');
+        const subtotal = cart.reduce((s, i) => s + i.price * i.qty, 0);
+        const discount = activePromo ? Math.round((subtotal * activePromo.pct) / 100) : 0;
+        const total = subtotal - discount;
+        const promoLine = activePromo
+          ? `\n🏷️ Code promo ${activePromo.code} (−${activePromo.pct}%) : −${formatPrice(discount)}`
+          : '';
+        const msg = `🛒 Nouvelle commande — ${STORE_NAME}\n\n${lines}${promoLine}\n\n💰 Total : ${formatPrice(total)}\n\n👤 ${name}\n📱 ${phone}\n🏙️ ${city}\n📍 ${address}\n\n✅ Paiement à la livraison (COD)`;
+        const waUrl = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(msg)}`;
+
+        clearCart();
+
+        document.getElementById('cart-content').innerHTML = `
+    <div style="text-align:center;padding:56px 24px">
+      <div style="font-size:3rem;margin-bottom:16px">✅</div>
+      <h2 style="font-size:1.2rem;font-weight:800;margin-bottom:8px">Commande reçue !</h2>
+      <p style="color:var(--ink-muted);margin-bottom:24px">Merci <strong>${name}</strong> ! Nous vous appellerons au <strong>${phone}</strong> pour confirmer.</p>
+      <a href="${waUrl}" target="_blank" rel="noopener" class="btn btn-whatsapp btn-lg" style="display:inline-flex;align-items:center;gap:8px">
+        Envoyer aussi sur WhatsApp
+      </a>
+      <br><br>
+      <a href="/produits.html" class="btn btn-outline">Continuer mes achats</a>
+    </div>`;
+        window.open(waUrl, '_blank');
+      });
+    </script>
+  </body>
+</html>

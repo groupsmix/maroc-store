@@ -1,0 +1,23 @@
+# Cloudflare Workers — Store (static multi-page site, assets-only)
+# Built with Vite to ./dist, served directly from Cloudflare's edge as a
+# Workers Static Assets deployment (no server code). Deployed by GitHub Actions
+# using the shared CLOUDFLARE_API_TOKEN.
+
+name = "jumlaop-store"
+compatibility_date = "2026-05-17"
+workers_dev = true
+
+[assets]
+directory = "./dist"
+# Serve /produits for /produits.html, etc. (multi-page static site).
+html_handling = "auto-trailing-slash"
+not_found_handling = "404-page"
+
+[env.production]
+name = "jumlaop-store"
+workers_dev = true
+
+[env.production.assets]
+directory = "./dist"
+html_handling = "auto-trailing-slash"
+not_found_handling = "404-page"
