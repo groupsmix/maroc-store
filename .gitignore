@@ -5,3 +5,5 @@ dist/
 .env.local
 .dev.vars
 *.local
+.tsbuildinfo
+bun.lock

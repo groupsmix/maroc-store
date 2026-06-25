@@ -98,7 +98,7 @@ export const dataProvider: DataProvider = {
 
   // ── List ───────────────────────────────────────────────────────────────────
   getList: async (resource, params) => {
-    const { page, perPage } = params.pagination;
+    const { page = 1, perPage = 10 } = params.pagination ?? {};
     const { filter } = params;
 
     const qs = new URLSearchParams({ page: String(page), limit: String(perPage) });
@@ -128,7 +128,7 @@ export const dataProvider: DataProvider = {
     // No total from API — estimate: if hasMore, at least one more page exists
     const total = wrapper?.hasMore ? offset + items.length + 1 : offset + items.length;
 
-    return { data: items, total };
+    return { data: items as any[], total };
   },
 
   // ── One ────────────────────────────────────────────────────────────────────
@@ -137,7 +137,7 @@ export const dataProvider: DataProvider = {
     // GET /products/:id → data: { product: {...} }
     const wrapper = data as Record<string, unknown>;
     const record = (wrapper.product ?? wrapper) as Record<string, unknown>;
-    return { data: record };
+    return { data: record as any };
   },
 
   // ── Create ─────────────────────────────────────────────────────────────────
@@ -146,7 +146,7 @@ export const dataProvider: DataProvider = {
     const { data: responseData } = await apiFetch('POST', `/${resource}`, body);
     const wrapper = responseData as Record<string, unknown>;
     const record = (wrapper.product ?? wrapper) as Record<string, unknown>;
-    return { data: record };
+    return { data: record as any };
   },
 
   // ── Update ─────────────────────────────────────────────────────────────────
@@ -155,17 +155,23 @@ export const dataProvider: DataProvider = {
     const { data: responseData } = await apiFetch('PUT', `/${resource}/${id}`, body);
     const wrapper = responseData as Record<string, unknown>;
     const record = (wrapper.product ?? wrapper) as Record<string, unknown>;
-    return { data: record };
+    return { data: record as any };
   },
 
   // ── Delete ─────────────────────────────────────────────────────────────────
   delete: async (resource, { id }) => {
     await apiFetch('DELETE', `/${resource}/${id}`);
-    return { data: { id } as Record<string, unknown> };
+    return { data: { id } as any };
   },
 
   deleteMany: async (resource, { ids }) => {
     await Promise.all(ids.map(id => apiFetch('DELETE', `/${resource}/${id}`)));
+    return { data: ids };
+  },
+
+  updateMany: async (resource, { ids, data }) => {
+    const body = resource === 'products' ? toProductApiBody(data as Record<string, unknown>) : data;
+    await Promise.all(ids.map(id => apiFetch('PUT', `/${resource}/${id}`, body)));
     return { data: ids };
   },
 
@@ -178,11 +184,11 @@ export const dataProvider: DataProvider = {
         return (wrapper.product ?? wrapper) as Record<string, unknown>;
       }),
     );
-    return { data: records };
+    return { data: records as any[] };
   },
 
   getManyReference: async (resource, params) => {
-    const { page, perPage } = params.pagination;
+    const { page = 1, perPage = 10 } = params.pagination ?? {};
     const qs = new URLSearchParams({
       page:            String(page),
       limit:           String(perPage),
@@ -194,6 +200,6 @@ export const dataProvider: DataProvider = {
     checkUnauthorized(res.status);
     const json = (await res.json()) as { data?: { items?: unknown[] } };
     const items = (json.data?.items ?? []) as Record<string, unknown>[];
-    return { data: items, total: items.length };
+    return { data: items as any[], total: items.length };
   },
 };
