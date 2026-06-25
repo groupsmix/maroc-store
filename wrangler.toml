@@ -3,7 +3,7 @@
 # Workers Static Assets deployment (no server code). Deployed by GitHub Actions
 # using the shared CLOUDFLARE_API_TOKEN.
 
-name = "jumlaop-store"
+name = "maroc-store"
 compatibility_date = "2026-05-17"
 workers_dev = true
 
@@ -14,7 +14,7 @@ html_handling = "auto-trailing-slash"
 not_found_handling = "404-page"
 
 [env.production]
-name = "jumlaop-store"
+name = "maroc-store"
 workers_dev = true
 
 [env.production.assets]
