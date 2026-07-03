@@ -12,7 +12,7 @@ export function App() {
     <Admin
       dataProvider={dataProvider}
       authProvider={authProvider}
-      title="JumlaOP Store Admin"
+      title="MarocShop Admin"
     >
       <Resource
         name="products"
